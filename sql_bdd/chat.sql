@@ -42,7 +42,7 @@ SET time_zone = "+00:00";
     `email` varchar(255) NOT NULL,
     `password` varchar(255) NOT NULL,
     `img` varchar(400) NOT NULL,
-    `status` varchar(255) NOT NULL
+    `sta  tus` varchar(255) NOT NULL
   )
 
 -- -------------------------------------------------------- --

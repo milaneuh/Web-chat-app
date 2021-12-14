@@ -20,20 +20,22 @@
   <div class="wrapper">
     <section class="chat-area">
       <header>
+
         <?php 
-          $user_id = mysqli_real_escape_string($conn, $_GET['user_id']);
-          $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$user_id}");
-          if(mysqli_num_rows($sql) > 0){
-            $row = mysqli_fetch_assoc($sql);
-          }else{
-            header("location: users.php");
-          }
-        ?>
+            $user_id = $pdo->quote($_GET['user_id']);
+            $result = $pdo->prepare("SELECT * FROM users WHERE unique_id = ? ");
+            $result->execute(array(trim($user_id, "'")));
+            $data = $result->fetch();
+            if(!$data['username'] &&  !$data['status']){
+              throw new Exception("No match was found in the database.");
+            }else{
+          ?>
+
         <a href="users.php" class="back-arrow"><i class="fas fa-arrow-left"></i></a>
-        <img src="php/images/<?php echo $row['img']; ?>" alt="">
+        <img src="php/images/<?php echo $data['img']; ?>" alt="">
         <div class="details">
-          <span><?php echo $row['username'] ?></span>
-          <p><?php echo $row['status']; ?></p>
+          <span><?php echo $data['username'] ?></span>
+          <p><?php echo $data['status']; } ?></p>
         </div>
       </header>
       <div class="chat-box">
@@ -45,6 +47,7 @@
         <button><i class="fab fa-telegram-plane"></i></button>
       </form>
     </section>
+
   </div>
 
   <script src="javascript/chat.js"></script>

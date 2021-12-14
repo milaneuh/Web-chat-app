@@ -10,7 +10,7 @@
 <div class="wrapper">
     <section class="form signup">
         <header>Welcome to Bee Message ! <br> Create New Account</header>
-        <form action="#" enctype="multipart/form-data">
+        <form action="#" enctype="multipart/form-data" method="POST">
             <div class="errorTxt">
                 This is an error message
             </div>

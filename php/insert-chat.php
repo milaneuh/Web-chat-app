@@ -3,12 +3,16 @@
     if(isset($_SESSION['unique_id'])){
         include_once "config.php";
         $outgoing_id = $_SESSION['unique_id'];
-        $incoming_id = mysqli_real_escape_string($conn, $_POST['incoming_id']);
-        $message = mysqli_real_escape_string($conn, $_POST['message']);
+        $incoming_id = $pdo->quote($_POST['incomming_id']);
+        $message = $pdo->quote($_POST['message']);
         if(!empty($message)){
-            $sql = mysqli_query($conn, "INSERT INTO message (receiver_id, sender_id, message)
-                                        VALUES ({$incoming_id}, {$outgoing_id}, '{$message}')") or die();
+            $result = $pdo->prepare("INSERT INTO message (receiver_id, sender_id, message)
+            VALUES (?, ?, ?)") or die();
+
+            $result->execute(array($incoming_id,$outgoing_id,$message));
         }
+
+
     }else{
         header("location: ../login.php");
     }
