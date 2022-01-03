@@ -6,7 +6,7 @@
     $receiver_id = $_SESSION["unique_id"];
     $output = "";
 
-    //Prépatation de la requête
+    //Préparation de la requête
     $response = $pdo->prepare("SELECT * from users WHERE NOT unique_id = ? ");
     //Éxecution de la requête
     $response->execute(array($receiver_id));
