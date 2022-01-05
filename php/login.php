@@ -2,7 +2,7 @@
     //Démarrage de session
     session_start();
     try {
-        //On récupère nos identifiants administrateur de la base de données
+        //On récupère notre objet PDO
         include_once "config.php";
 
         //On récupère les données récupérée grâce à Ajax
