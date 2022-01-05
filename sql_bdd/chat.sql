@@ -11,7 +11,10 @@ SET time_zone = "+00:00";
 
 -- Structure de la table MESSAGES --
 
-
+  CREATE DATABASE chat;
+  
+  USE chat;
+  
   CREATE TABLE `message` (
     `message_id` int(11) NOT NULL PRIMARY AUTO_INCREMENT,
     `receiver_id` int(255) NOT NULL,
