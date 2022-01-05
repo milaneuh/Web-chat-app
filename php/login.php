@@ -2,7 +2,7 @@
     //Démarrage de session
     session_start();
     try {
-        //On récupère notre objet PDO
+        //On se connecte à la base de données
         include_once "config.php";
 
         //On récupère les données inscrite par l'utilisateur
@@ -56,12 +56,5 @@
         }
     } catch(PDOException $exception){
         echo "Impossible de se connecter.";
-<<<<<<< HEAD
     }   
 ?>
-=======
-    }
-   
-
-?>
->>>>>>> e5c5ee9158ab669dd88a6f4d9c28221a23d42b89
