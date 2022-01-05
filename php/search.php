@@ -3,11 +3,11 @@
     include_once "config.php";
 
 
-    $receiver_id = $_SESSION['unique_id'];
+    $receiver_id = $_SESSION['session_id'];
     $search = $pdo -> quote($_POST['search']);
     $output = "";
 
-    $response = $pdo->prepare("SELECT * FROM users WHERE NOT unique_id = ? AND (username LIKE ?)");
+    $response = $pdo->prepare("SELECT * FROM users WHERE NOT session_id = ? AND (username LIKE ?)");
     $response->execute(array($receiver_id,$search));
     
     $data = $response->fetch();

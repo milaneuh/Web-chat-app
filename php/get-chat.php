@@ -2,11 +2,11 @@
     //Démarrage de session
     session_start();
 
-    if(isset($_SESSION['unique_id'])){
+    if(isset($_SESSION['session_id'])){
         //Si un utilisateur est connecté à la session :
         include_once "config.php";
 
-        $outgoing_id = $_SESSION['unique_id'];
+        $outgoing_id = $_SESSION['session_id'];
         $incoming_id = $pdo->quote($_POST['incoming_id']);
         $output = "";
 

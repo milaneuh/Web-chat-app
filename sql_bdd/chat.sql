@@ -9,7 +9,7 @@ SET time_zone = "+00:00";
 -- -------------------------------------------------------- --
 
 
--- Structure de la table `message` --
+-- Structure de la table MESSAGES --
 
 
   CREATE TABLE `message` (
@@ -19,16 +19,20 @@ SET time_zone = "+00:00";
     `message` varchar(1000) NOT NULL
   )
 
--- -------------------------------------------------------- --
-
-
--- Déchargement des données de la table `message` --
+-- Insertion de données de la table `message` --
 
 
   INSERT INTO `message` (`message_id`, `receiver_id`, `sender_id`, `message`) VALUES
   (1, 1305878197, 1564951526, 'hello !'),
   (2, 1564951526, 1305878197, 'Coucou ! ça va bien ?'),
   (3, 1305878197, 1564951526, 'ça va et toi ?');
+
+
+
+
+
+
+
 
 -- -------------------------------------------------------- --
 

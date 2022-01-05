@@ -4,7 +4,7 @@
             OR sender_id = ?) AND (receiver_id = ?
             OR sender_id = ?) ORDER BY message_id DESC LIMIT 1");
 
-            $response2->execute(array($data['unique_id'],$data['unique_id'],$receiver_id,$receiver_id));
+            $response2->execute(array($data['session_id'],$data['session_id'],$receiver_id,$receiver_id));
 
             $msg = "";
             $you = "";
@@ -21,9 +21,9 @@
             }
             
             ($data['status'] == "Offline now") ? $offline = "offline" : $offline = "";
-            ($receiver_id == $data['unique_id']) ? $hid_me = "hide" : $hid_me = "";
+            ($receiver_id == $data['session_id']) ? $hid_me = "hide" : $hid_me = "";
 
-            $output .= '<a href="chat.php?user_id='. $data['unique_id'] .'">
+            $output .= '<a href="chat.php?user_id='. $data['session_id'] .'">
                         <div class="content">
                         <img src="php/images/'. $data['img'] .'" alt="">
                         <div class="details">

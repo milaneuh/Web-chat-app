@@ -6,6 +6,7 @@
     $password = trim($pdo -> quote( $_POST['password']), "'");
     $confirmPassword = trim($pdo -> quote( $_POST['confirmPassword']), "'");
         
+    
     if(!empty($email) && !empty($username) && !empty($password) && !empty($confirmPassword)){
                 //Si tous les champs sont bien inscrits : 
 
@@ -20,8 +21,9 @@
                     //Analyse de la reponse, si $reponse possède un email alors 
                     //l'utilisateur possède déjà un compte
                     $data = $response->fetch();
-                    
-                    if(!$data['email']){
+                    $data['email'] ??= 'unused';
+
+                    if($data['email'] == 'unused'){
                         //On vérifie si l'utilisateur a bien rentré une image
                         if(isset($_FILES['image'])){
                             //Si il y a bien une image:
@@ -59,7 +61,7 @@
                                                 $hashedPassword = password_hash($password,PASSWORD_BCRYPT);
                                                 
                                                 //On insère nos données dans la database
-                                                $response = $pdo->prepare('INSERT INTO users (unique_id, username, email, password, img, status) VALUES (?,?,?,?,?,?)');
+                                                $response = $pdo->prepare('INSERT INTO users (session_id, username, email, password, img, status) VALUES (?,?,?,?,?,?)');
 
                                                 $response->execute(array($random_id,trim($username,"'"),trim($email,"'"),trim($hashedPassword,"'"),trim($new_img_name,"'"),trim($status,"'")));                 
                                         
@@ -69,7 +71,7 @@
                                                
 
                                                 $data =  $response->fetch();
-                                                $_SESSION['unique_id'] = $data['unique_id'];
+                                                $_SESSION['session_id'] = $data['session_id'];
                                                 echo "success";
                                                 
                                             }

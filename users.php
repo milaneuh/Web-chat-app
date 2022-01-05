@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if(!isset($_SESSION['unique_id'])){
+    if(!isset($_SESSION['session_id'])){
         header("location : login.php");
     }
 ?>
@@ -17,20 +17,27 @@
 </head>
 <body>
 <div class="wrapper">
+
+    <!-- On récupère les informations de l'utilisateur enregistré dans la session --> 
     <?php
         include_once "php/config.php";
-        $result = $pdo->prepare("SELECT * FROM users WHERE unique_id = ? ");
-        $result->execute(array($_SESSION['unique_id']));
+        $result = $pdo->prepare("SELECT * FROM users WHERE session_id = ? ");
+        $result->execute(array($_SESSION['session_id']));
         $data = $result->fetch();  
  
     ?>
+
     <section class="users">
         <header>
-            <a href="php/logout.php?logout_id=<?php echo $data['unique_id']; ?>" class="logout">
+
+            <!-- Bouton de déconnexion -->
+            <a href="php/logout.php?logout_id=<?php echo $data['session_id ']; ?>" class="logout">
                <span class="material-icons" style="font-size: 30px; padding: 0">
                 power_settings_new
                 </span>
             </a>
+
+            <!-- Affichage des informations de l'utilisateur de la session -->
             <div class="content">
                 <img src="php/images/<?php echo $data['img']?>" alt="">
                 <div class="details">
@@ -39,11 +46,15 @@
                 </div>
             </div>
         </header>
+
+        <!-- Barre de recherche -->
         <div class="search">
             <span class="text">Entrez un nom à chercher ... </span>
             <input type="text" placeholder="Entrez un nom à chercher ...">
             <button><i class="fas fa-search"></i></button>
         </div>
+
+        <!-- Div qui contiendra les utilisateurs disponibles -->
         <div class="usersList">
             
         </div>
