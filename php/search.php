@@ -4,7 +4,7 @@
 
 
     $receiver_id = $_SESSION['session_id'];
-    $search = $pdo -> quote($_POST['search']);
+    $search = validate(trim($pdo -> quote($_POST['search']),"'"));
     $output = "";
 
     $response = $pdo->prepare("SELECT * FROM users WHERE NOT session_id = ? AND (username LIKE ?)");

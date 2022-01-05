@@ -7,7 +7,7 @@
         include_once "config.php";
 
         $outgoing_id = $_SESSION['session_id'];
-        $incoming_id = $pdo->quote($_POST['incoming_id']);
+        $incoming_id =validate(trim( $pdo->quote($_POST['incoming_id']),"'"));
         $output = "";
 
         //On récupère tous les message la table message et tous les user_id de la table users

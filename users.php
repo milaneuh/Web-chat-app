@@ -31,7 +31,7 @@
         <header>
 
             <!-- Bouton de déconnexion -->
-            <a href="php/logout.php?logout_id=<?php echo $data['session_id ']; ?>" class="logout">
+            <a href="php/logout.php?logout_id=<?php echo $data['session_id']; ?>" class="logout">
                <span class="material-icons" style="font-size: 30px; padding: 0">
                 power_settings_new
                 </span>

@@ -4,7 +4,7 @@
         //Si un utilisateur est connecté alors on arrive ici, sinon on va sur la page de login
         include_once "config.php";
 
-        $logout_id = $pdo -> quote($_GET['logout_id']);
+        $logout_id = validate(trim($pdo -> quote($_GET['logout_id']),"'"));
         if(isset($logout_id)){
             //Si on a un identifiant de déconnexion :
             $status = "Offline now";

@@ -6,8 +6,8 @@
         include_once "config.php";
 
         //On récupère les données inscrite par l'utilisateur
-        $email = $pdo -> quote($_POST['email']);
-        $password = $pdo -> quote( $_POST['password']);
+        $email = validate(trim( $pdo -> quote($_POST['email']),"'"));
+        $password = validate(trim( $pdo -> quote($_POST['password']),"'"));
         $email = trim($email,"'");
         $password = trim($password,"'");
 

@@ -10,4 +10,12 @@
   catch (PDOException $exception) {
       exit('Erreur de connexion à la base de données');
   } 
-?>
+
+    //Protection face aux injections SQL
+    function validate($data){
+      $data = trim($data);
+      $data = stripslashes($data);
+      $data = htmlspecialchars($data,ENT_QUOTES);
+      return $data;
+    }
+  ?>
