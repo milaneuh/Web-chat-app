@@ -56,5 +56,6 @@
         }
     } catch(PDOException $exception){
         echo "Impossible de se connecter.";
+
     }   
 ?>
