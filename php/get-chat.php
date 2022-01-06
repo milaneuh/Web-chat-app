@@ -16,10 +16,10 @@
         //    l'utilisateur de la session locale ou l'identifiant de l'utilisateur de la session
         //    avec laquelle on envois un message (Identifiant récupéré grâce à Ajax)
     
-        $result = $pdo->prepare("SELECT * FROM message 
-        LEFT JOIN users ON users.unique_id = message.sender_id
-        WHERE (sender_id = ? AND receiver_id = ?)
-        OR (sender_id = ? AND receiver_id = ?) ORDER BY message_id");
+        $result = $pdo->prepare("SELECT * FROM messages 
+        LEFT JOIN users ON users.session_id = messages.user_sender_id
+        WHERE (user_sender_id = ? AND user_receiver_id = ?)
+        OR (user_sender_id = ? AND user_receiver_id = ?) ORDER BY message_id");
 
         $result->execute(array($outgoing_id,$incoming_id,$incoming_id,$outgoing_id));
 
@@ -30,7 +30,7 @@
                 if(sizeof($data) >= 1){
                     //Si on a récupéré au minimum 1 message : 
         
-                    if($data['sender_id'] === $outgoing_id){
+                    if($data['user_sender_id'] === $outgoing_id){
                         //Si c'est un message envoyé :
 
                         $output .= '<div class="chat sent">

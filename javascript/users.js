@@ -45,13 +45,17 @@ searchInput.onkeyup = () => {
 //php du fichier php/users.php et récupérer les données renvoyées pour les 
 //afficher dans la div usersList
 setInterval(() => {
+        console.log("Methode");
+        
         //Ajax
         //On créer un objet XML
         let xhr = new XMLHttpRequest();
         xhr.open("POST", "php/users.php", true);
         xhr.onload = () => {
+            console.log(xhr.readyState)
             if (xhr.readyState == XMLHttpRequest.DONE) {
                 let data = xhr.response;
+                console.log(xhr.response)
                 if (!searchInput.classList.contains("active")) {
                     //Si notre barre de rechere n'est PAS active :
                     usersList.innerHTML = data;

@@ -7,11 +7,11 @@
         $output = "";
 
         //Préparation de la requête
-        $response = $pdo->prepare("SELECT * from users WHERE NOT session_id = ? ");
+        $response = $pdo->prepare("SELECT * from users WHERE NOT session_id = ?");
         //Éxecution de la requête
         $response->execute(array($receiver_id));
-    
-        if($response->fetch() !=null){
+        $data = $response->fetch();
+        if(!is_null($data)){
             include "data.php";
         }else{
             $output .= "Aucun utilisateurs disponible pour chat";

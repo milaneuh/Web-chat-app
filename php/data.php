@@ -1,9 +1,10 @@
 <?php 
-      while($data = $response->fetch()){
-            $response2 = $pdo->prepare("SELECT * FROM message WHERE (receiver_id = ?
-            OR sender_id = ?) AND (receiver_id = ?
-            OR sender_id = ?) ORDER BY message_id DESC LIMIT 1");
+ 
 
+            $response2 = $pdo->prepare("SELECT * FROM `messages` WHERE (user_receiver_id= ?
+            OR user_sender_id= ?) AND (user_receiver_id = ?
+            OR user_sender_id = ?) ORDER BY message_id DESC LIMIT 1");
+            
             $response2->execute(array($data['session_id'],$data['session_id'],$receiver_id,$receiver_id));
 
             $msg = "";
@@ -13,8 +14,8 @@
                 (sizeof($data2) > 0) ? $result = $data2['message'] : $result = "No message avalaible";
                 (strlen($result) > 28) ? $smg =  substr($result, 0, 28) . '...' : $msg = $result;
 
-                if(isset($data2['receiver_id'])){
-                    ($receiver_id == $data2['receiver_id']) ? $you = "You: " : $you = "";
+                if(isset($data2['user_receiver_id'])){
+                    ($receiver_id == $data2['user_receiver_id']) ? $you = "You: " : $you = "";
                 }else{
                     $you = "";
                 }
@@ -32,7 +33,7 @@
                         </div>
                         </div>
                         <div class="status-dot '. $offline .'"><i class="fas fa-circle"></i></div>
-                    </a>';
-        }
+                    </a>'; 
+        
 ?>
 

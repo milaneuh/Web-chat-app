@@ -1,10 +1,10 @@
 <?php
     session_start();
     include_once "config.php";
-    $email = trim($pdo -> quote($_POST['email']), "'");
-    $username = trim($pdo -> quote($_POST['username']), "'");
-    $password = trim($pdo -> quote( $_POST['password']), "'");
-    $confirmPassword = trim($pdo -> quote( $_POST['confirmPassword']), "'");
+    $email = validate(trim($pdo -> quote($_POST['email']),"'"));
+    $username = validate(trim($pdo -> quote($_POST['username']),"'"));
+    $password = validate(trim($pdo -> quote( $_POST['password']),"'"));
+    $confirmPassword = validate(trim($pdo -> quote( $_POST['confirmPassword']),"'"));
         
     
     if(!empty($email) && !empty($username) && !empty($password) && !empty($confirmPassword)){
