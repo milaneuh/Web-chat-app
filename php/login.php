@@ -5,7 +5,7 @@
         //On se connecte à la base de données
         include_once "config.php";
 
-        //On récupère les données inscrite par l'utilisateur
+        //On récupère les données inscrites par l'utilisateur
         $email = validate(trim( $pdo -> quote($_POST['email']),"'"));
         $password = validate(trim( $pdo -> quote($_POST['password']),"'"));
         $email = trim($email,"'");
@@ -34,7 +34,7 @@
                                                             WHERE session_id = ?");
                                 $response->execute(array($status,$data['session_id']));
                                     //Si le changement s'est bien passé :
-                                    //On connecte l'utilisateur dans la session et on renvois 
+                                    //On connecte l'utilisateur dans la session et on renvoie  
                                     //le message de succés 
                                     $_SESSION['session_id'] = $data['session_id'];
                                     echo "success";
