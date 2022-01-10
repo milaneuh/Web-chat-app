@@ -3,7 +3,7 @@ const searchInput = document.querySelector(".users .search input"),
     searchBt = document.querySelector(".users .search button"),
     usersList = document.querySelector(".users .usersList");
 
-//Si on clic sur le bouton de recherche :
+//Si on clique sur le bouton de recherche :
 searchBt.onclick = () => {
     //On change ses classes pour changer son apparence
     searchInput.classList.toggle("active");
