@@ -14,7 +14,7 @@
         if(!is_null($data)){
             include "data.php";
         }else{
-            $output .= "Aucun utilisateurs disponible pour chat";
+            $output .= "Aucun utilisateur disponible pour chat";
         }
     }catch (PDOException $exception){
         $output .= 'Erreur de connexion à la base de données';
